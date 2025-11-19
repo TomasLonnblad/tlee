@@ -5,24 +5,24 @@ import { useFrame } from "@react-three/fiber";
 
 const Wizard = React.memo(function Wizard(props) {
   // Use React.memo for performance optimization
-  const { nodes, materials } = useGLTF("/models14/g1.glb");
+
+  const { nodes, materials } = useGLTF('models15/19.glb')
 
   const modelRef = useRef();
 
   useFrame((state) => {
     modelRef.current.rotation.y =
-      -0.1 + Math.sin(state.clock.elapsedTime) * 0.15;
+      -0.1 + Math.sin(state.clock.elapsedTime) * 0.25;
   });
 
-  return (
-        <group {...props} dispose={null}>
 
-  <group ref={modelRef}>
-      <group rotation={[Math.PI / -2.4, -18.85, 4.2]}>
-        <group scale={-0.025}>
-          <group scale={0.4}>
-            <group position={50.05}>
-            <group rotation={[Math.PI,0, 0]} scale={110.41}>
+  return (
+    <group {...props} dispose={null}>
+          <group ref={modelRef}>
+      <group rotation={[Math.PI / -2.3, 0.01, -0.6]}>
+        <group scale={-0.93}>
+          <group scale={0.0075}>
+            <group rotation={[Math.PI, 0, 0]} scale={110.41}>
               <mesh
                 castShadow
                 receiveShadow
@@ -36,8 +36,6 @@ const Wizard = React.memo(function Wizard(props) {
                 material={materials.BenchWood}
               />
             </group>
-
-
             <group rotation={[-Math.PI / 2, 0, 0]} scale={[50, 22.5, 50]}>
               <mesh
                 castShadow
@@ -82,8 +80,6 @@ const Wizard = React.memo(function Wizard(props) {
                 material={materials.CeillingWire}
               />
             </group>
-
-
             <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
               <mesh
                 castShadow
@@ -112,7 +108,6 @@ const Wizard = React.memo(function Wizard(props) {
                 material={materials.Emissive}
               />
             </group>
-
             <mesh
               castShadow
               receiveShadow
@@ -154,14 +149,23 @@ const Wizard = React.memo(function Wizard(props) {
                 geometry={nodes.Walls_Walls_0.geometry}
                 material={materials.Walls}
               />
+ 
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes['tripo_node_d5d7a45d-0f3d-443e-a721-a52008c88198'].geometry}
+        material={materials['tripo_mat_d5d7a45d-0f3d-443e-a721-a52008c88198']}
+        position={[-7.1, 0.01, 1.295]}
+        rotation={[-0.008, -0.046, 0.05]}
+        scale={[7.91, 45.253, 7.532]}
+      />
+    </group>
             </group>
           </group>
         </group>
       </group>
-            </group>
-    </group> 
-   </group>
-   ) ;
-  })
+</group>
+  );
+})
 export default Wizard;
-useGLTF.preload("/models14/g1.glb");
+useGLTF.preload("/models15/19.glb");
